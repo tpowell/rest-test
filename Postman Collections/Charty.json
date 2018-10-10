@@ -24,15 +24,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"palette\": [{\n          \"primary\": \"#f44336\",\n          \"secondary\": \"#f44336\"\n        }, {\n          \"primary\": \"#e91e63\",\n          \"secondary\": \"#e91e63\"\n        }, {\n          \"primary\": \"#9c27b0\",\n          \"secondary\": \"#9c27b0\"\n        }, {\n          \"primary\": \"#673ab7\",\n          \"secondary\": \"#673ab7\"\n        }, {\n          \"primary\": \"#3f51b5\",\n          \"secondary\": \"#3f51b5\"\n        }, {\n          \"primary\": \"#2196f3\",\n          \"secondary\": \"#2196f3\"\n        }, {\n          \"primary\": \"#009688\",\n          \"secondary\": \"#009688\"\n        }, {\n          \"primary\": \"#00bcd4\",\n          \"secondary\": \"#00bcd4\"\n        }, {\n          \"primary\": \"#4caf50\",\n          \"secondary\": \"#4caf50\"\n        }],\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
+              "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
             },
             "url": "{{API_URL}}/chart",
             "description": "Creates a chart"
           },
           "response": [
             {
-              "id": "5536875-c8834a5b-b570-4e69-bbaf-267322fec7f3",
-              "name": "Line Chart",
+              "id": "5536875-9bff5dd6-2bdd-4eb3-a72d-9b19a7a49204",
+              "name": "Create a line chart",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -44,7 +44,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"palette\": [{\n          \"primary\": \"#f44336\",\n          \"secondary\": \"#f44336\"\n        }, {\n          \"primary\": \"#e91e63\",\n          \"secondary\": \"#e91e63\"\n        }, {\n          \"primary\": \"#9c27b0\",\n          \"secondary\": \"#9c27b0\"\n        }, {\n          \"primary\": \"#673ab7\",\n          \"secondary\": \"#673ab7\"\n        }, {\n          \"primary\": \"#3f51b5\",\n          \"secondary\": \"#3f51b5\"\n        }, {\n          \"primary\": \"#2196f3\",\n          \"secondary\": \"#2196f3\"\n        }, {\n          \"primary\": \"#009688\",\n          \"secondary\": \"#009688\"\n        }, {\n          \"primary\": \"#00bcd4\",\n          \"secondary\": \"#00bcd4\"\n        }, {\n          \"primary\": \"#4caf50\",\n          \"secondary\": \"#4caf50\"\n        }],\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART 2 fixed again\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
+                  "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
                 },
                 "url": "{{API_URL}}/chart"
               },
@@ -53,14 +53,14 @@
               "_postman_previewlanguage": "json",
               "header": [
                 {
-                  "key": "Connection",
-                  "value": "keep-alive",
-                  "name": "Connection",
-                  "description": "Options that are desired for the connection"
+                  "key": "Alt-Svc",
+                  "value": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\"",
+                  "name": "Alt-Svc",
+                  "description": "Custom header"
                 },
                 {
                   "key": "Content-Length",
-                  "value": "1083",
+                  "value": "691",
                   "name": "Content-Length",
                   "description": "The length of the response body in octets (8-bit bytes)"
                 },
@@ -72,15 +72,27 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Tue, 09 Oct 2018 04:34:05 GMT",
+                  "value": "Wed, 10 Oct 2018 00:10:12 GMT",
                   "name": "Date",
                   "description": "The date and time that the message was sent"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"43b-O+5+C/qb0Pq0HG80YFV93F25mXc\"",
+                  "value": "W/\"2b3-B83If+H8awMpQ+CULxEio7IZUnE\"",
                   "name": "ETag",
                   "description": "An identifier for a specific version of a resource, often a message digest"
+                },
+                {
+                  "key": "Server",
+                  "value": "Google Frontend",
+                  "name": "Server",
+                  "description": "A name for the server"
+                },
+                {
+                  "key": "X-Cloud-Trace-Context",
+                  "value": "0b97394274b034b8fcbbb3597aed3e76;o=1",
+                  "name": "X-Cloud-Trace-Context",
+                  "description": "Custom header"
                 },
                 {
                   "key": "X-Powered-By",
@@ -91,7 +103,7 @@
               ],
               "cookie": [],
               "responseTime": null,
-              "body": "{\"attributes\":\"{\\\"type\\\":\\\"line\\\",\\\"palette\\\":[{\\\"primary\\\":\\\"#f44336\\\",\\\"secondary\\\":\\\"#f44336\\\"},{\\\"primary\\\":\\\"#e91e63\\\",\\\"secondary\\\":\\\"#e91e63\\\"},{\\\"primary\\\":\\\"#9c27b0\\\",\\\"secondary\\\":\\\"#9c27b0\\\"},{\\\"primary\\\":\\\"#673ab7\\\",\\\"secondary\\\":\\\"#673ab7\\\"},{\\\"primary\\\":\\\"#3f51b5\\\",\\\"secondary\\\":\\\"#3f51b5\\\"},{\\\"primary\\\":\\\"#2196f3\\\",\\\"secondary\\\":\\\"#2196f3\\\"},{\\\"primary\\\":\\\"#009688\\\",\\\"secondary\\\":\\\"#009688\\\"},{\\\"primary\\\":\\\"#00bcd4\\\",\\\"secondary\\\":\\\"#00bcd4\\\"},{\\\"primary\\\":\\\"#4caf50\\\",\\\"secondary\\\":\\\"#4caf50\\\"}],\\\"title\\\":{\\\"enabled\\\":true,\\\"text\\\":\\\"LINE CHART 2 fixed again\\\"},\\\"legend\\\":{\\\"enabled\\\":true},\\\"tooltip\\\":{\\\"enabled\\\":true}}\",\"data\":\"[{\\\"name\\\":\\\"Metric A\\\",\\\"values\\\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]\",\"svg\":\"1539059639981.svg\",\"png\":\"1539059639981.png\"}"
+              "body": "{\"attributes\":\"{\\\"type\\\":\\\"line\\\",\\\"title\\\":{\\\"enabled\\\":true,\\\"text\\\":\\\"LINE CHART\\\"},\\\"legend\\\":{\\\"enabled\\\":true},\\\"tooltip\\\":{\\\"enabled\\\":true}}\",\"data\":\"[{\\\"name\\\":\\\"Metric A\\\",\\\"values\\\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]\",\"svg\":\"https://storage.googleapis.com/charty-v0-images/1539130207320.svg\",\"png\":\"https://storage.googleapis.com/charty-v0-images/1539130207320.png\",\"id\":30}"
             }
           ]
         },
@@ -108,7 +120,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"attributes\": {\n        \"type\": \"bar\",\n        \"palette\": [{\n          \"primary\": \"#f44336\",\n          \"secondary\": \"#f44336\"\n        }, {\n          \"primary\": \"#e91e63\",\n          \"secondary\": \"#e91e63\"\n        }, {\n          \"primary\": \"#9c27b0\",\n          \"secondary\": \"#9c27b0\"\n        }, {\n          \"primary\": \"#673ab7\",\n          \"secondary\": \"#673ab7\"\n        }, {\n          \"primary\": \"#3f51b5\",\n          \"secondary\": \"#3f51b5\"\n        }, {\n          \"primary\": \"#2196f3\",\n          \"secondary\": \"#2196f3\"\n        }, {\n          \"primary\": \"#009688\",\n          \"secondary\": \"#009688\"\n        }, {\n          \"primary\": \"#00bcd4\",\n          \"secondary\": \"#00bcd4\"\n        }, {\n          \"primary\": \"#4caf50\",\n          \"secondary\": \"#4caf50\"\n        }],\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
+              "raw": "{\n\t\"attributes\": {\n        \"type\": \"bar\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"Bar Chart\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
             },
             "url": {
               "raw": "{{API_URL}}/chart/:id",
@@ -122,8 +134,8 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "27",
-                  "description": "The id of the chart to modify"
+                  "value": "{{chart_id}}",
+                  "description": "The id of the chart being modified"
                 }
               ]
             },
@@ -131,8 +143,8 @@
           },
           "response": [
             {
-              "id": "5536875-bcb0aebf-567f-4e3a-8c85-bb0c5a545f6a",
-              "name": "Update",
+              "id": "5536875-ae65d823-78cd-4f58-a4c3-676d4d799f2a",
+              "name": "Update a chart",
               "originalRequest": {
                 "method": "PATCH",
                 "header": [
@@ -144,7 +156,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n\t\"attributes\": {\n        \"type\": \"bar\",\n        \"palette\": [{\n          \"primary\": \"#f44336\",\n          \"secondary\": \"#f44336\"\n        }, {\n          \"primary\": \"#e91e63\",\n          \"secondary\": \"#e91e63\"\n        }, {\n          \"primary\": \"#9c27b0\",\n          \"secondary\": \"#9c27b0\"\n        }, {\n          \"primary\": \"#673ab7\",\n          \"secondary\": \"#673ab7\"\n        }, {\n          \"primary\": \"#3f51b5\",\n          \"secondary\": \"#3f51b5\"\n        }, {\n          \"primary\": \"#2196f3\",\n          \"secondary\": \"#2196f3\"\n        }, {\n          \"primary\": \"#009688\",\n          \"secondary\": \"#009688\"\n        }, {\n          \"primary\": \"#00bcd4\",\n          \"secondary\": \"#00bcd4\"\n        }, {\n          \"primary\": \"#4caf50\",\n          \"secondary\": \"#4caf50\"\n        }],\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
+                  "raw": "{\n\t\"attributes\": {\n        \"type\": \"bar\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"Bar Chart\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
                 },
                 "url": {
                   "raw": "{{API_URL}}/chart/:id",
@@ -158,8 +170,8 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": "27",
-                      "description": "The id of the chart to modify"
+                      "value": "{{chart_id}}",
+                      "description": "The id of the chart being modified"
                     }
                   ]
                 }
@@ -169,14 +181,14 @@
               "_postman_previewlanguage": "json",
               "header": [
                 {
-                  "key": "Connection",
-                  "value": "keep-alive",
-                  "name": "Connection",
-                  "description": "Options that are desired for the connection"
+                  "key": "Alt-Svc",
+                  "value": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\"",
+                  "name": "Alt-Svc",
+                  "description": "Custom header"
                 },
                 {
                   "key": "Content-Length",
-                  "value": "1209",
+                  "value": "726",
                   "name": "Content-Length",
                   "description": "The length of the response body in octets (8-bit bytes)"
                 },
@@ -188,15 +200,27 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Tue, 09 Oct 2018 04:53:35 GMT",
+                  "value": "Tue, 09 Oct 2018 23:24:50 GMT",
                   "name": "Date",
                   "description": "The date and time that the message was sent"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"4b9-xYXprnEbSIreTrrFYFIcnv76G5A\"",
+                  "value": "W/\"2d6-8hoEj1j3Da4P9PyPa/ugf32gDyQ\"",
                   "name": "ETag",
                   "description": "An identifier for a specific version of a resource, often a message digest"
+                },
+                {
+                  "key": "Server",
+                  "value": "Google Frontend",
+                  "name": "Server",
+                  "description": "A name for the server"
+                },
+                {
+                  "key": "X-Cloud-Trace-Context",
+                  "value": "6ccb13c36696f7bfed82d0314410a436;o=1",
+                  "name": "X-Cloud-Trace-Context",
+                  "description": "Custom header"
                 },
                 {
                   "key": "X-Powered-By",
@@ -207,7 +231,7 @@
               ],
               "cookie": [],
               "responseTime": null,
-              "body": "{\"id\":27,\"attributes\":\"{\\\"type\\\":\\\"bar\\\",\\\"palette\\\":[{\\\"primary\\\":\\\"#f44336\\\",\\\"secondary\\\":\\\"#f44336\\\"},{\\\"primary\\\":\\\"#e91e63\\\",\\\"secondary\\\":\\\"#e91e63\\\"},{\\\"primary\\\":\\\"#9c27b0\\\",\\\"secondary\\\":\\\"#9c27b0\\\"},{\\\"primary\\\":\\\"#673ab7\\\",\\\"secondary\\\":\\\"#673ab7\\\"},{\\\"primary\\\":\\\"#3f51b5\\\",\\\"secondary\\\":\\\"#3f51b5\\\"},{\\\"primary\\\":\\\"#2196f3\\\",\\\"secondary\\\":\\\"#2196f3\\\"},{\\\"primary\\\":\\\"#009688\\\",\\\"secondary\\\":\\\"#009688\\\"},{\\\"primary\\\":\\\"#00bcd4\\\",\\\"secondary\\\":\\\"#00bcd4\\\"},{\\\"primary\\\":\\\"#4caf50\\\",\\\"secondary\\\":\\\"#4caf50\\\"}],\\\"title\\\":{\\\"enabled\\\":true,\\\"text\\\":\\\"LINE CHART\\\"},\\\"legend\\\":{\\\"enabled\\\":true},\\\"tooltip\\\":{\\\"enabled\\\":true}}\",\"data\":\"[{\\\"name\\\":\\\"Metric A\\\",\\\"values\\\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]\",\"created\":\"2018-10-09T11:51:55.000Z\",\"png\":\"https://storage.googleapis.com/charty-v0-images/1539060809016.png\",\"svg\":\"https://storage.googleapis.com/charty-v0-images/1539060809016.svg\"}"
+              "body": "{\"id\":25,\"attributes\":\"{\\\"type\\\":\\\"bar\\\",\\\"title\\\":{\\\"enabled\\\":true,\\\"text\\\":\\\"Bar Chart\\\"},\\\"legend\\\":{\\\"enabled\\\":true},\\\"tooltip\\\":{\\\"enabled\\\":true}}\",\"data\":\"[{\\\"name\\\":\\\"Metric A\\\",\\\"values\\\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]\",\"created\":\"2018-10-09T04:42:30.000Z\",\"png\":\"https://storage.googleapis.com/charty-v0-images/1539127484920.png\",\"svg\":\"https://storage.googleapis.com/charty-v0-images/1539127484920.svg\"}"
             }
           ]
         },
@@ -309,7 +333,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "27",
+                  "value": "{{chart_id}}",
                   "description": "The id of the chart to delete"
                 }
               ]
@@ -392,6 +416,18 @@
         {
           "_postman_id": "5536875-57f1ec5e-534d-44c3-809d-70e257bd1234",
           "name": "Generate a Chart",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "0a6f53e9-5d65-41a0-982b-b0d8f8197de3",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [
@@ -402,7 +438,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"palette\": [{\n          \"primary\": \"#f44336\",\n          \"secondary\": \"#f44336\"\n        }, {\n          \"primary\": \"#e91e63\",\n          \"secondary\": \"#e91e63\"\n        }, {\n          \"primary\": \"#9c27b0\",\n          \"secondary\": \"#9c27b0\"\n        }, {\n          \"primary\": \"#673ab7\",\n          \"secondary\": \"#673ab7\"\n        }, {\n          \"primary\": \"#3f51b5\",\n          \"secondary\": \"#3f51b5\"\n        }, {\n          \"primary\": \"#2196f3\",\n          \"secondary\": \"#2196f3\"\n        }, {\n          \"primary\": \"#009688\",\n          \"secondary\": \"#009688\"\n        }, {\n          \"primary\": \"#00bcd4\",\n          \"secondary\": \"#00bcd4\"\n        }, {\n          \"primary\": \"#4caf50\",\n          \"secondary\": \"#4caf50\"\n        }],\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
+              "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
             },
             "url": "{{API_URL}}/chart/generate",
             "description": "Generate a chart (SVG by default)"
@@ -436,7 +472,7 @@
   ],
   "variable": [
     {
-      "id": "ab132e6a-9160-41e1-83a5-775685233ee9",
+      "id": "f3d8f0b5-2b85-4273-b1d9-f9eaa41ff7b0",
       "key": "API_URL",
       "value": "https://charty-v0.appspot.com/api",
       "type": "string",
