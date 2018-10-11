@@ -2,51 +2,34 @@
   "info": {
     "_postman_id": "5536875-c3453e5f-51cf-4431-8fdb-b6a8974a2304",
     "name": "Charty",
-    "description": "The Charty API",
+    "description": "The Charty API is organized around REST. We support cross-origin resource sharing, allowing you to interact with our API from client-side web applications, as well as server based calls. To get started, be sure to have your API key ready from your dashboard.\n\n---\n\n# Using the API Documentation\nYou will need to [create an environment in Postman](https://www.getpostman.com/docs/environments) before getting started. \n\n---\n\n# API Keys\n*Note: currently you do not need api keys to access the api. The following is preliminary for it's implementation.*\n\n## Public Keys:\n\nPlease see [Creating API Keys](#) for more detailed information.\n\nPublic keys will have read permissions and have the ability to access chart information. They can also be domain locked. These keys can be exposed in a client-side web application.\n\n## Private keys:\n\nPrivate keys can be furnished with both read/write permissions. Only use these keys in environments that are privately accessible. \n\n---\n\n# Errors\n\nCharty uses standard HTTP response codes to indicate the success or failure of an API request.\n\n| type         | description  |\n| -------------|:------------:|\n| 200 - OK| Everything worked as expected |\n| 201 - Created | Entity Created |\n| 204 - No Content | Entity was Deleted |\n| 400 - Bad Request | The request is malformed | \n| 401 - Unauthorized | No valid API key provided |\n| 404 - Not Found | The requested resource does not exist | \n| 429 - Too Many Requests | The resource is rejected due to rate limiting. |\n| 5XX - Server Errors | Something went wrong on our end >- |\n\n# Pagination\n\n--TODO--\n\n# Querying\nDepending on the resource being requested, the Charty API supports multiple different ways to sort, filter, and limit resource data being passed to the client. See each request individually to determine what querying functionality is available for that route.\n\n## Sorting\nTo sort by a specific value, a quantifier should be prefixed to the beginning of a term.\n* `-` Descending\n* `+` Ascending\n\nExample: `?sort=-priority` will return results in descending order.\n\n## Filtering\n\nFiltering through results can be achieved by passing a `key=value` to specific routes. \n\nExample: `?state=open` will return all results that have the state equals 'open'.\n\nThe following comparator operators are available for querying:\n* gt - greater than\n* gte - greater than or equal to\n* lt - less than\n* lte - less than or equal to\n* ne - not equal\n* eq - equals\n* contains - if the string contains the query\n* starts - if the string starts with\n* ends - if the string ends with\n\nThese comparators can be attached to queries using the `.` operator.\n\nExample: `?html.contains=foobar` will return results that have the string 'foobar' in the html string.\n\n\n## Limiting\n\nThe amount of information passed to the client can be reduced by passing the `fields` query param to any route. By default, the response will return all information back to the client. The fields param indicates which fields to be passed back to the client.\n\nExample:\n`/charts?fields=attributes` will only return the attributes property.\n\n",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "_postman_id": "5536875-82f1fa82-69e7-43c5-b2fd-3cc9cdfae72d",
       "name": "Chart",
-      "description": "REST API for creating charts",
+      "description": "This is a chart object representing a created chart. You can retrieve a chart's attributes and data in this call.\n\nYou can also obtain links into to the generated png and svg files.\n\n\n## The chart object\n\n| key     | type         | description  |\n| ------------- |:-------------:| ------------:|\n| attributes      | object |The chart's attributes used to generate. For more information on how to configure a chart, visit our [Chart Configuration](#) documentation.|\n| data     | object/string      | The chart's data used to generate the chart .For more information on the data types chart accepts, visit our [Data Formats](#) documentation.  |\n| svg | string     | The URL to access the rendered svg |\n| png | string     | The URL to access the rendered png |",
       "item": [
         {
-          "_postman_id": "5536875-3761d266-7bb6-499b-8f64-172d94b6e16a",
-          "name": "Create a Chart",
+          "_postman_id": "5536875-fdce43a3-f85d-4f41-bedd-3706bf212807",
+          "name": "List All Charts",
           "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
-            },
-            "url": "{{API_URL}}/chart",
-            "description": "Creates a chart"
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": "{{API_URL}}/charts/",
+            "description": "Returns a paginated list of a user's charts. By default, the limit is 10."
           },
           "response": [
             {
-              "id": "5536875-9bff5dd6-2bdd-4eb3-a72d-9b19a7a49204",
-              "name": "Create a line chart",
+              "id": "5536875-c714e8a8-1360-47a0-af18-ebaa67488bed",
+              "name": "Empty List",
               "originalRequest": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "disabled": false
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
-                },
-                "url": "{{API_URL}}/chart"
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": "{{API_URL}}/charts/"
               },
               "status": "OK",
               "code": 200,
@@ -60,7 +43,7 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "691",
+                  "value": "100",
                   "name": "Content-Length",
                   "description": "The length of the response body in octets (8-bit bytes)"
                 },
@@ -72,13 +55,13 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Wed, 10 Oct 2018 00:10:12 GMT",
+                  "value": "Mon, 08 Oct 2018 23:50:01 GMT",
                   "name": "Date",
                   "description": "The date and time that the message was sent"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"2b3-B83If+H8awMpQ+CULxEio7IZUnE\"",
+                  "value": "W/\"64-dUGk3UF4zaeuMewzHUT68+QYaZ0\"",
                   "name": "ETag",
                   "description": "An identifier for a specific version of a resource, often a message digest"
                 },
@@ -90,7 +73,7 @@
                 },
                 {
                   "key": "X-Cloud-Trace-Context",
-                  "value": "0b97394274b034b8fcbbb3597aed3e76;o=1",
+                  "value": "4c8c785bc3989c9a8757d8013865c486;o=1",
                   "name": "X-Cloud-Trace-Context",
                   "description": "Custom header"
                 },
@@ -103,7 +86,109 @@
               ],
               "cookie": [],
               "responseTime": null,
-              "body": "{\"attributes\":\"{\\\"type\\\":\\\"line\\\",\\\"title\\\":{\\\"enabled\\\":true,\\\"text\\\":\\\"LINE CHART\\\"},\\\"legend\\\":{\\\"enabled\\\":true},\\\"tooltip\\\":{\\\"enabled\\\":true}}\",\"data\":\"[{\\\"name\\\":\\\"Metric A\\\",\\\"values\\\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]\",\"svg\":\"https://storage.googleapis.com/charty-v0-images/1539130207320.svg\",\"png\":\"https://storage.googleapis.com/charty-v0-images/1539130207320.png\",\"id\":30}"
+              "body": "{\"start\":0,\"limit\":10,\"size\":0,\"_links\":{\"base\":\"/api/chart/\",\"next\":null,\"prev\":null},\"results\":[]}"
+            }
+          ]
+        },
+        {
+          "_postman_id": "5536875-37a8844a-1e37-4956-9da0-a4b54d0f0687",
+          "name": "Retrieve a Chart",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{API_URL}}/charts/:id",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "charts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{chart_id}}",
+                  "description": "The id of the chart"
+                }
+              ]
+            },
+            "description": "Retrieve a chart using it's ID"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5536875-3761d266-7bb6-499b-8f64-172d94b6e16a",
+          "name": "Create a Chart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [\n\t\t{\n        \t\"name\": \"Metric A\",\n        \t\"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n    \t}, \n    \t{\n        \t\"name\": \"Metric B\",\n        \t\"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n    \t}\n    ]\n}"
+            },
+            "url": "{{API_URL}}/charts",
+            "description": "Creates a chart"
+          },
+          "response": [
+            {
+              "id": "5536875-541237ed-3f58-4d25-a06c-d7ba034cac5c",
+              "name": "Create a Line Chart",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [\n\t\t{\n        \t\"name\": \"Metric A\",\n        \t\"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n    \t}, \n    \t{\n        \t\"name\": \"Metric B\",\n        \t\"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n    \t}\n    ]\n}"
+                },
+                "url": "{{API_URL}}/charts"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "504"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1f8-VW66gsxYCwuZ0rzAxEszwD5V+/0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Oct 2018 21:49:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"attributes\": \"{\\\"type\\\":\\\"line\\\",\\\"title\\\":{\\\"enabled\\\":true,\\\"text\\\":\\\"LINE CHART\\\"},\\\"legend\\\":{\\\"enabled\\\":true},\\\"tooltip\\\":{\\\"enabled\\\":true}}\",\n    \"data\": \"[{\\\"name\\\":\\\"Metric A\\\",\\\"values\\\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]}]\",\n    \"svg\": \"https://storage.googleapis.com/charty-v0-images/1539208177750.svg\",\n    \"png\": \"https://storage.googleapis.com/charty-v0-images/1539208177750.png\",\n    \"id\": 31\n}"
             }
           ]
         },
@@ -123,12 +208,12 @@
               "raw": "{\n\t\"attributes\": {\n        \"type\": \"bar\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"Bar Chart\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
             },
             "url": {
-              "raw": "{{API_URL}}/chart/:id",
+              "raw": "{{API_URL}}/charts/:id",
               "host": [
                 "{{API_URL}}"
               ],
               "path": [
-                "chart",
+                "charts",
                 ":id"
               ],
               "variable": [
@@ -159,12 +244,12 @@
                   "raw": "{\n\t\"attributes\": {\n        \"type\": \"bar\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"Bar Chart\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
                 },
                 "url": {
-                  "raw": "{{API_URL}}/chart/:id",
+                  "raw": "{{API_URL}}/charts/:id",
                   "host": [
                     "{{API_URL}}"
                   ],
                   "path": [
-                    "chart",
+                    "charts",
                     ":id"
                   ],
                   "variable": [
@@ -236,85 +321,6 @@
           ]
         },
         {
-          "_postman_id": "5536875-fdce43a3-f85d-4f41-bedd-3706bf212807",
-          "name": "List All Charts",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": "{{API_URL}}/chart/",
-            "description": "List charts (pagination)"
-          },
-          "response": [
-            {
-              "id": "5536875-c714e8a8-1360-47a0-af18-ebaa67488bed",
-              "name": "Empty List",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "body": {},
-                "url": "{{API_URL}}/chart/"
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Alt-Svc",
-                  "value": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\"",
-                  "name": "Alt-Svc",
-                  "description": "Custom header"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "100",
-                  "name": "Content-Length",
-                  "description": "The length of the response body in octets (8-bit bytes)"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8",
-                  "name": "Content-Type",
-                  "description": "The mime type of this content"
-                },
-                {
-                  "key": "Date",
-                  "value": "Mon, 08 Oct 2018 23:50:01 GMT",
-                  "name": "Date",
-                  "description": "The date and time that the message was sent"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"64-dUGk3UF4zaeuMewzHUT68+QYaZ0\"",
-                  "name": "ETag",
-                  "description": "An identifier for a specific version of a resource, often a message digest"
-                },
-                {
-                  "key": "Server",
-                  "value": "Google Frontend",
-                  "name": "Server",
-                  "description": "A name for the server"
-                },
-                {
-                  "key": "X-Cloud-Trace-Context",
-                  "value": "4c8c785bc3989c9a8757d8013865c486;o=1",
-                  "name": "X-Cloud-Trace-Context",
-                  "description": "Custom header"
-                },
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express",
-                  "name": "X-Powered-By",
-                  "description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": "{\"start\":0,\"limit\":10,\"size\":0,\"_links\":{\"base\":\"/api/chart/\",\"next\":null,\"prev\":null},\"results\":[]}"
-            }
-          ]
-        },
-        {
           "_postman_id": "5536875-00a8a985-b5ee-4172-8f74-25c0247ff491",
           "name": "Delete a Chart",
           "request": {
@@ -322,12 +328,12 @@
             "header": [],
             "body": {},
             "url": {
-              "raw": "{{API_URL}}/chart/:id",
+              "raw": "{{API_URL}}/charts/:id",
               "host": [
                 "{{API_URL}}"
               ],
               "path": [
-                "chart",
+                "charts",
                 ":id"
               ],
               "variable": [
@@ -349,12 +355,12 @@
                 "header": [],
                 "body": {},
                 "url": {
-                  "raw": "{{API_URL}}/chart/:id",
+                  "raw": "{{API_URL}}/charts/:id",
                   "host": [
                     "{{API_URL}}"
                   ],
                   "path": [
-                    "chart",
+                    "charts",
                     ":id"
                   ],
                   "variable": [
@@ -421,10 +427,10 @@
               "listen": "prerequest",
               "script": {
                 "id": "0a6f53e9-5d65-41a0-982b-b0d8f8197de3",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -440,7 +446,7 @@
               "mode": "raw",
               "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
             },
-            "url": "{{API_URL}}/chart/generate",
+            "url": "{{API_URL}}/charts/generate",
             "description": "Generate a chart (SVG by default)"
           },
           "response": []
@@ -472,7 +478,7 @@
   ],
   "variable": [
     {
-      "id": "f3d8f0b5-2b85-4273-b1d9-f9eaa41ff7b0",
+      "id": "e0817b96-c718-49bb-8700-df10fc932cd8",
       "key": "API_URL",
       "value": "https://charty-v0.appspot.com/api",
       "type": "string",
