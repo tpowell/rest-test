@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "5536875-c3453e5f-51cf-4431-8fdb-b6a8974a2304",
     "name": "Charty",
-    "description": "The Charty API is organized around REST. We support cross-origin resource sharing, allowing you to interact with our API from client-side web applications, as well as server based calls. To get started, be sure to have your API key ready from your dashboard.\n\n---\n\n# Using the API Documentation\nYou will need to [create an environment in Postman](https://www.getpostman.com/docs/environments) before getting started. \n\n---\n\n# API Keys\n*Note: currently you do not need api keys to access the api. The following is preliminary for it's implementation.*\n\n## Public Keys:\n\nPlease see [Creating API Keys](#) for more detailed information.\n\nPublic keys will have read permissions and have the ability to access chart information. They can also be domain locked. These keys can be exposed in a client-side web application.\n\n## Private keys:\n\nPrivate keys can be furnished with both read/write permissions. Only use these keys in environments that are privately accessible. \n\n---\n\n# Errors\n\nCharty uses standard HTTP response codes to indicate the success or failure of an API request.\n\n| type         | description  |\n| -------------|:------------:|\n| 200 - OK| Everything worked as expected |\n| 201 - Created | Entity Created |\n| 204 - No Content | Entity was Deleted |\n| 400 - Bad Request | The request is malformed | \n| 401 - Unauthorized | No valid API key provided |\n| 404 - Not Found | The requested resource does not exist | \n| 429 - Too Many Requests | The resource is rejected due to rate limiting. |\n| 5XX - Server Errors | Something went wrong on our end >- |\n\n# Pagination\n\n--TODO--\n\n# Querying\nDepending on the resource being requested, the Charty API supports multiple different ways to sort, filter, and limit resource data being passed to the client. See each request individually to determine what querying functionality is available for that route.\n\n## Sorting\nTo sort by a specific value, a quantifier should be prefixed to the beginning of a term.\n* `-` Descending\n* `+` Ascending\n\nExample: `?sort=-priority` will return results in descending order.\n\n## Filtering\n\nFiltering through results can be achieved by passing a `key=value` to specific routes. \n\nExample: `?state=open` will return all results that have the state equals 'open'.\n\nThe following comparator operators are available for querying:\n* gt - greater than\n* gte - greater than or equal to\n* lt - less than\n* lte - less than or equal to\n* ne - not equal\n* eq - equals\n* contains - if the string contains the query\n* starts - if the string starts with\n* ends - if the string ends with\n\nThese comparators can be attached to queries using the `.` operator.\n\nExample: `?html.contains=foobar` will return results that have the string 'foobar' in the html string.\n\n\n## Limiting\n\nThe amount of information passed to the client can be reduced by passing the `fields` query param to any route. By default, the response will return all information back to the client. The fields param indicates which fields to be passed back to the client.\n\nExample:\n`/charts?fields=attributes` will only return the attributes property.\n\n",
+    "description": "The Charty API is organized around REST. We support cross-origin resource sharing, allowing you to interact with our API from client-side web applications, as well as server based calls. To get started, be sure to have your API key ready from your dashboard.\n\n---\n\n# Using the API Documentation\nMany of these examples can be run directly from the command line with cURL or with your favorite language. For ease of exploration, we reccomend [creating an environment in Postman](https://www.getpostman.com/docs/environments) before getting started. \n\n---\n\n# API Keys\n*Note: currently you do not need api keys to access the api. The following is preliminary for it's implementation.*\n\n## Public Keys:\n\nPublic keys will have read permissions and have the ability to access chart information. They can also be domain locked. These keys can be exposed in a client-side web application.\n\nPlease see [Creating API Keys](#) for more detailed information.\n\n\n## Private keys:\n\nPrivate keys can be furnished with both read/write permissions. Only use these keys in environments that are privately accessible. \n\n---\n\n# Errors\n\nCharty uses standard HTTP response codes to indicate the success or failure of an API request.\n\n| type         | description  |\n| -------------|:------------:|\n| 200 - OK| Everything worked as expected |\n| 201 - Created | Entity Created |\n| 204 - No Content | Entity was Deleted |\n| 400 - Bad Request | The request is malformed | \n| 401 - Unauthorized | No valid API key provided |\n| 404 - Not Found | The requested resource does not exist | \n| 429 - Too Many Requests | The resource is rejected due to rate limiting. |\n| 5XX - Server Errors | Something went wrong on our end >- |\n\n# Pagination\n\n--TODO--\n\n# Querying\nDepending on the resource being requested, the Charty API supports multiple different ways to sort, filter, and limit resource data being passed to the client. See each request individually to determine what querying functionality is available for that route.\n\n## Sorting\nTo sort by a specific value, a quantifier should be prefixed to the beginning of a term.\n* `-` Descending\n* `+` Ascending\n\nExample: `?sort=-priority` will return results in descending order.\n\n## Filtering\n\nFiltering through results can be achieved by passing a `key=value` to specific routes. \n\nExample: `?state=open` will return all results that have the state equals 'open'.\n\nThe following comparator operators are available for querying:\n* gt - greater than\n* gte - greater than or equal to\n* lt - less than\n* lte - less than or equal to\n* ne - not equal\n* eq - equals\n* contains - if the string contains the query\n* starts - if the string starts with\n* ends - if the string ends with\n\nThese comparators can be attached to queries using the `.` operator.\n\nExample: `?html.contains=foobar` will return results that have the string 'foobar' in the html string.\n\n\n## Limiting\n\nThe amount of information passed to the client can be reduced by passing the `fields` query param to any route. By default, the response will return all information back to the client. The fields param indicates which fields to be passed back to the client.\n\nExample:\n`/charts?fields=attributes` will only return the attributes property.",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
@@ -16,9 +16,32 @@
           "name": "List All Charts",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "686d561ab1434650a255fbce6d8367d8",
+                "type": "text",
+                "disabled": true
+              }
+            ],
             "body": {},
-            "url": "{{API_URL}}/charts/",
+            "url": {
+              "raw": "{{API_URL}}/charts/",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "charts",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "type": "text"
+                }
+              ]
+            },
             "description": "Returns a paginated list of a user's charts. By default, the limit is 10."
           },
           "response": [
@@ -478,7 +501,7 @@
   ],
   "variable": [
     {
-      "id": "e0817b96-c718-49bb-8700-df10fc932cd8",
+      "id": "d74a4941-584a-479e-90a0-71df0bb441c5",
       "key": "API_URL",
       "value": "https://charty-v0.appspot.com/api",
       "type": "string",
