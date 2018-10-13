@@ -26,19 +26,19 @@
             ],
             "body": {},
             "url": {
-              "raw": "{{API_URL}}/charts/",
+              "raw": "{{API_URL}}/charts",
               "host": [
                 "{{API_URL}}"
               ],
               "path": [
-                "charts",
-                ""
+                "charts"
               ],
               "query": [
                 {
                   "key": "",
                   "value": "",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 }
               ]
             },
@@ -501,7 +501,7 @@
   ],
   "variable": [
     {
-      "id": "d74a4941-584a-479e-90a0-71df0bb441c5",
+      "id": "74d52fc7-8513-4c81-b0f0-818a6e23e161",
       "key": "API_URL",
       "value": "https://charty-v0.appspot.com/api",
       "type": "string",
