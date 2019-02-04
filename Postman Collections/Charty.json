@@ -572,7 +572,7 @@
   ],
   "variable": [
     {
-      "id": "f0351f12-5c1f-4ee7-81de-b6c2b3df4317",
+      "id": "153afbee-f8c2-48f3-9f44-a6b0da259570",
       "key": "API_URL",
       "value": "https://charty-v0.appspot.com/api",
       "type": "string",
