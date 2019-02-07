@@ -546,6 +546,26 @@
           }
         }
       ]
+    },
+    {
+      "_postman_id": "5536875-2b159ab6-4742-478c-8379-50007f996c62",
+      "name": "List Themes",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "d3dbf3251d6a8dd68be8d4724f6a774f"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{API_URL}}/v1/theme"
+      },
+      "response": []
     }
   ],
   "event": [
@@ -572,7 +592,7 @@
   ],
   "variable": [
     {
-      "id": "c3d160b2-a307-435e-9b52-d123b5c941a9",
+      "id": "45239f56-f8a9-4294-b94a-88c77361c3ab",
       "key": "API_URL",
       "value": "https://charty-v0.appspot.com/api",
       "type": "string",
