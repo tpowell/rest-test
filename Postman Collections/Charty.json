@@ -566,6 +566,27 @@
         "url": "{{API_URL}}/v1/theme"
       },
       "response": []
+    },
+    {
+      "_postman_id": "5536875-e98f9d61-3d02-47db-8d54-2ca748f83f4b",
+      "name": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"html\": \"<html><head></head><body>hello world</body></html>\",\n\t\"css\": \"html,body { background: red;}\",\n\t\"js\": \"console.log('hello world')\",\n\t\"filename\": \"testfile-002.png\"\n}"
+        },
+        "url": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots"
+      },
+      "response": []
     }
   ],
   "event": [
@@ -592,7 +613,7 @@
   ],
   "variable": [
     {
-      "id": "8b60e921-30aa-4671-b498-c822c7f5837b",
+      "id": "fa2212dd-2af8-45b0-8ba6-cc957aa3e204",
       "key": "API_URL",
       "value": "https://charty-v0.appspot.com/api",
       "type": "string",
