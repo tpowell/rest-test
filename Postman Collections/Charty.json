@@ -7,13 +7,11 @@
   },
   "item": [
     {
-      "_postman_id": "5536875-82f1fa82-69e7-43c5-b2fd-3cc9cdfae72d",
       "name": "Chart",
-      "description": "This is a chart object representing a created chart. You can retrieve a chart's attributes and data in this call.\n\nYou can also obtain links into to the generated png and svg files.\n\n\n## The chart object\n\n| key     | type         | description  |\n| ------------- |:-------------:| ------------:|\n| attributes      | object |The chart's attributes used to generate. For more information on how to configure a chart, visit our [Chart Configuration](https://charty-v0.appspot.com/docs) documentation.|\n| data     | object/string      | The chart's data used to generate the chart .For more information on the data types chart accepts, visit our [Data Formats](https://charty-v0.appspot.com/data) documentation.  |\n| svg | string     | The URL to access the rendered svg |\n| png | string     | The URL to access the rendered png |\n| id_user | string | The owner of the chart",
       "item": [
         {
-          "_postman_id": "5536875-fdce43a3-f85d-4f41-bedd-3706bf212807",
           "name": "List All Charts",
+          "_postman_id": "5536875-fdce43a3-f85d-4f41-bedd-3706bf212807",
           "request": {
             "method": "GET",
             "header": [
@@ -29,7 +27,10 @@
                 "type": "text"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
             "url": {
               "raw": "{{API_URL}}/charts",
               "host": [
@@ -56,7 +57,10 @@
               "originalRequest": {
                 "method": "GET",
                 "header": [],
-                "body": {},
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
                 "url": "{{API_URL}}/charts/"
               },
               "status": "OK",
@@ -119,8 +123,8 @@
           ]
         },
         {
-          "_postman_id": "5536875-37a8844a-1e37-4956-9da0-a4b54d0f0687",
           "name": "Retrieve a Chart",
+          "_postman_id": "5536875-37a8844a-1e37-4956-9da0-a4b54d0f0687",
           "request": {
             "method": "GET",
             "header": [
@@ -130,10 +134,6 @@
                 "type": "text"
               }
             ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
             "url": {
               "raw": "{{API_URL}}/charts/:id",
               "host": [
@@ -147,7 +147,8 @@
                 {
                   "key": "id",
                   "value": "{{chart_id}}",
-                  "description": "The id of the chart"
+                  "description": "The id of the chart",
+                  "type": "string"
                 }
               ]
             },
@@ -156,8 +157,8 @@
           "response": []
         },
         {
-          "_postman_id": "5536875-3761d266-7bb6-499b-8f64-172d94b6e16a",
           "name": "Create a Chart",
+          "_postman_id": "5536875-3761d266-7bb6-499b-8f64-172d94b6e16a",
           "request": {
             "method": "POST",
             "header": [
@@ -232,8 +233,8 @@
           ]
         },
         {
-          "_postman_id": "5536875-e4ff52ae-51c1-4506-aa6c-82093bd2c2b7",
           "name": "Update a Chart",
+          "_postman_id": "5536875-e4ff52ae-51c1-4506-aa6c-82093bd2c2b7",
           "request": {
             "method": "PATCH",
             "header": [
@@ -264,7 +265,8 @@
                 {
                   "key": "id",
                   "value": "{{chart_id}}",
-                  "description": "The id of the chart being modified"
+                  "description": "The id of the chart being modified",
+                  "type": "string"
                 }
               ]
             },
@@ -365,8 +367,8 @@
           ]
         },
         {
-          "_postman_id": "5536875-00a8a985-b5ee-4172-8f74-25c0247ff491",
           "name": "Delete a Chart",
+          "_postman_id": "5536875-00a8a985-b5ee-4172-8f74-25c0247ff491",
           "request": {
             "method": "DELETE",
             "header": [
@@ -376,7 +378,10 @@
                 "type": "text"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
             "url": {
               "raw": "{{API_URL}}/charts/:id",
               "host": [
@@ -390,7 +395,8 @@
                 {
                   "key": "id",
                   "value": "{{chart_id}}",
-                  "description": "The id of the chart to delete"
+                  "description": "The id of the chart to delete",
+                  "type": "string"
                 }
               ]
             },
@@ -403,7 +409,10 @@
               "originalRequest": {
                 "method": "DELETE",
                 "header": [],
-                "body": {},
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
                 "url": {
                   "raw": "{{API_URL}}/charts/:id",
                   "host": [
@@ -470,7 +479,6 @@
           ]
         },
         {
-          "_postman_id": "5536875-57f1ec5e-534d-44c3-809d-70e257bd1234",
           "name": "Generate a Chart",
           "event": [
             {
@@ -484,6 +492,7 @@
               }
             }
           ],
+          "_postman_id": "5536875-57f1ec5e-534d-44c3-809d-70e257bd1234",
           "request": {
             "method": "POST",
             "header": [
@@ -524,6 +533,8 @@
           "response": []
         }
       ],
+      "_postman_id": "5536875-82f1fa82-69e7-43c5-b2fd-3cc9cdfae72d",
+      "description": "This is a chart object representing a created chart. You can retrieve a chart's attributes and data in this call.\n\nYou can also obtain links into to the generated png and svg files.\n\n\n## The chart object\n\n| key     | type         | description  |\n| ------------- |:-------------:| ------------:|\n| attributes      | object |The chart's attributes used to generate. For more information on how to configure a chart, visit our [Chart Configuration](https://charty-v0.appspot.com/docs) documentation.|\n| data     | object/string      | The chart's data used to generate the chart .For more information on the data types chart accepts, visit our [Data Formats](https://charty-v0.appspot.com/data) documentation.  |\n| svg | string     | The URL to access the rendered svg |\n| png | string     | The URL to access the rendered png |\n| id_user | string | The owner of the chart",
       "event": [
         {
           "listen": "prerequest",
@@ -548,8 +559,11 @@
       ]
     },
     {
-      "_postman_id": "5536875-2b159ab6-4742-478c-8379-50007f996c62",
       "name": "List Themes",
+      "_postman_id": "5536875-2b159ab6-4742-478c-8379-50007f996c62",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "auth": {
           "type": "bearer",
@@ -559,17 +573,16 @@
         },
         "method": "GET",
         "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": ""
-        },
         "url": "{{API_URL}}/v1/theme"
       },
       "response": []
     },
     {
-      "_postman_id": "5536875-e98f9d61-3d02-47db-8d54-2ca748f83f4b",
       "name": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots",
+      "_postman_id": "5536875-e98f9d61-3d02-47db-8d54-2ca748f83f4b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "method": "POST",
         "header": [
@@ -613,11 +626,10 @@
   ],
   "variable": [
     {
-      "id": "07f59c52-65d0-499b-9b93-a3a73e2a271d",
+      "id": "0907c94e-f7b7-4315-9ba9-2a20027a05cc",
       "key": "API_URL",
       "value": "https://charty-v0.appspot.com/api",
-      "type": "string",
-      "description": ""
+      "type": "string"
     }
   ]
 }
