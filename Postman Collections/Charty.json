@@ -1,863 +1,131 @@
-{
-  "swagger": "2.0",
-  "info": {
-    "version": "1.0",
-    "title": "Charty",
-    "description": "The Charty API is organized around REST. We support cross-origin resource sharing, allowing you to interact with our API from client-side web applications, as well as server based calls. To get started, be sure to have your API key ready from your dashboard.\n\n---\n\n# Using the API Documentation\nMany of these examples can be run directly from the command line with cURL or with your favorite language. For ease of exploration, we reccomend [creating an environment in Postman](https://www.getpostman.com/docs/environments) before getting started. \n\n---\n\n# API Keys\n## Alpha Keys\n\nCurrently api keys doubles as a user. Set the `Authoization` header to have the value of `Bearer <username>` where username is any value. This user can be used for subsequent calls to the charts created under that user.\n\n*Note: The following is preliminary for it's implementation.*\n\n## Public Keys:\n\nPublic keys will have read permissions and have the ability to access chart information. They can also be domain locked. These keys can be exposed in a client-side web application.\n\nPlease see [Creating API Keys](#) for more detailed information.\n\n\n## Private keys:\n\nPrivate keys can be furnished with both read/write permissions. Only use these keys in environments that are privately accessible. \n\n---\n\n# Errors\n\nCharty uses standard HTTP response codes to indicate the success or failure of an API request.\n\n| type         | description  |\n| -------------|:------------:|\n| 200 - OK| Everything worked as expected |\n| 201 - Created | Entity Created |\n| 204 - No Content | Entity was Deleted |\n| 400 - Bad Request | The request is malformed | \n| 401 - Unauthorized | No valid API key provided |\n| 404 - Not Found | The requested resource does not exist | \n| 429 - Too Many Requests | The resource is rejected due to rate limiting. |\n| 5XX - Server Errors | Something went wrong on our end >- |\n\n",
-    "contact": {}
-  },
-  "host": "charty-v0.appspot.com",
-  "basePath": "/api",
-  "securityDefinitions": {},
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/charts": {
-      "get": {
-        "description": "Returns a paginated list of a user's charts. By default, the limit is 10.",
-        "summary": "List All Charts",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "ChartsGet",
-        "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/EmptyList"
-            },
-            "examples": {
-              "application/json; charset=utf-8": {
-                "start": 0,
-                "limit": 10,
-                "size": 0,
-                "_links": {
-                  "base": "/api/chart/",
-                  "next": null,
-                  "prev": null
-                },
-                "results": []
-              }
-            },
-            "headers": {
-              "Alt-Svc": {
-                "type": "string",
-                "default": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\""
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "100"
-              },
-              "Date": {
-                "type": "string",
-                "default": "Mon, 08 Oct 2018 23:50:01 GMT"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"64-dUGk3UF4zaeuMewzHUT68+QYaZ0\""
-              },
-              "Server": {
-                "type": "string",
-                "default": "Google Frontend"
-              },
-              "X-Cloud-Trace-Context": {
-                "type": "string",
-                "default": "4c8c785bc3989c9a8757d8013865c486;o=1"
-              },
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a chart",
-        "summary": "Create a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "ChartsPost",
-        "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/CreateaChartRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/CreateaLineChart"
-            },
-            "examples": {
-              "application/json; charset=utf-8": {
-                "attributes": "{\"type\":\"line\",\"title\":{\"enabled\":true,\"text\":\"LINE CHART\"},\"legend\":{\"enabled\":true},\"tooltip\":{\"enabled\":true}}",
-                "data": "[{\"name\":\"Metric A\",\"values\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\"name\":\"Metric B\",\"values\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]}]",
-                "svg": "https://storage.googleapis.com/charty-v0-images/1539208177750.svg",
-                "png": "https://storage.googleapis.com/charty-v0-images/1539208177750.png",
-                "id": 31
-              }
-            },
-            "headers": {
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "504"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"1f8-VW66gsxYCwuZ0rzAxEszwD5V+/0\""
-              },
-              "Date": {
-                "type": "string",
-                "default": "Wed, 10 Oct 2018 21:49:47 GMT"
-              },
-              "Connection": {
-                "type": "string",
-                "default": "keep-alive"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/charts/{id}": {
-      "get": {
-        "description": "Retrieve a chart using it's ID",
-        "summary": "Retrieve a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "ChartsByIdGet",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The id of the chart"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      },
-      "patch": {
-        "description": "Update a specific chart",
-        "summary": "Update a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "ChartsByIdPatch",
-        "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The id of the chart being modified"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/UpdateaChartRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Updateachart"
-            },
-            "examples": {
-              "application/json; charset=utf-8": {
-                "id": 25,
-                "attributes": "{\"type\":\"bar\",\"title\":{\"enabled\":true,\"text\":\"Bar Chart\"},\"legend\":{\"enabled\":true},\"tooltip\":{\"enabled\":true}}",
-                "data": "[{\"name\":\"Metric A\",\"values\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\"name\":\"Metric B\",\"values\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\"name\":\"Metric B\",\"values\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\"name\":\"Metric B\",\"values\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]",
-                "created": "2018-10-09T04:42:30Z",
-                "png": "https://storage.googleapis.com/charty-v0-images/1539127484920.png",
-                "svg": "https://storage.googleapis.com/charty-v0-images/1539127484920.svg"
-              }
-            },
-            "headers": {
-              "Alt-Svc": {
-                "type": "string",
-                "default": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\""
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "726"
-              },
-              "Date": {
-                "type": "string",
-                "default": "Tue, 09 Oct 2018 23:24:50 GMT"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"2d6-8hoEj1j3Da4P9PyPa/ugf32gDyQ\""
-              },
-              "Server": {
-                "type": "string",
-                "default": "Google Frontend"
-              },
-              "X-Cloud-Trace-Context": {
-                "type": "string",
-                "default": "6ccb13c36696f7bfed82d0314410a436;o=1"
-              },
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Delete a chart",
-        "summary": "Delete a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "ChartsByIdDelete",
-        "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The id of the chart to delete"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Delete"
-            },
-            "examples": {
-              "application/json; charset=utf-8": {
-                "id": "27",
-                "object": "chart",
-                "deleted": true
-              }
-            },
-            "headers": {
-              "Connection": {
-                "type": "string",
-                "default": "keep-alive"
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "43"
-              },
-              "Date": {
-                "type": "string",
-                "default": "Tue, 09 Oct 2018 04:57:29 GMT"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"2b-cSDqbYlwJLtTBIy3OK+/9QOxZSo\""
-              },
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/charts/generate": {
-      "post": {
-        "description": "Generate a chart (SVG by default)",
-        "summary": "Generate a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "ChartsGeneratePost",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/GenerateaChartRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/v1/theme": {
-      "get": {
-        "description": "TODO: Add Description",
-        "summary": "List Themes",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "V1ThemeGet",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/screenshots": {
-      "post": {
-        "description": "TODO: Add Description",
-        "summary": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "ScreenshotsPost",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/https%3A~1~1us-central1-chartingio-v0.cloudfunctions.net~1screenshots-request"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "EmptyList": {
-      "title": "EmptyList",
-      "example": {
-        "start": 0,
-        "limit": 10,
-        "size": 0,
-        "_links": {
-          "base": "/api/chart/",
-          "next": null,
-          "prev": null
-        },
-        "results": []
-      },
-      "type": "object",
-      "properties": {
-        "start": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "limit": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "size": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "_links": {
-          "$ref": "#/definitions/Links"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "required": [
-        "start",
-        "limit",
-        "size",
-        "_links",
-        "results"
-      ]
-    },
-    "Links": {
-      "title": "Links",
-      "example": {
-        "base": "/api/chart/",
-        "next": null,
-        "prev": null
-      },
-      "type": "object",
-      "properties": {
-        "base": {
-          "type": "string"
-        },
-        "next": {
-          "type": "string"
-        },
-        "prev": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "base",
-        "next",
-        "prev"
-      ]
-    },
-    "CreateaChartRequest": {
-      "title": "CreateaChartRequest",
-      "type": "object",
-      "properties": {
-        "attributes": {
-          "$ref": "#/definitions/Attributes"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Datum"
-          }
-        }
-      },
-      "required": [
-        "attributes",
-        "data"
-      ]
-    },
-    "Attributes": {
-      "title": "Attributes",
-      "example": {
-        "type": "line",
-        "title": {
-          "enabled": true,
-          "text": "Hello World"
-        },
-        "legend": {
-          "enabled": true
-        },
-        "tooltip": {
-          "enabled": true
-        }
-      },
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string"
-        },
-        "title": {
-          "$ref": "#/definitions/Title"
-        },
-        "legend": {
-          "$ref": "#/definitions/Legend"
-        },
-        "tooltip": {
-          "$ref": "#/definitions/Tooltip"
-        }
-      },
-      "required": [
-        "type",
-        "title",
-        "legend",
-        "tooltip"
-      ]
-    },
-    "Title": {
-      "title": "Title",
-      "example": {
-        "enabled": true,
-        "text": "Hello World"
-      },
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        },
-        "text": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "enabled",
-        "text"
-      ]
-    },
-    "Legend": {
-      "title": "Legend",
-      "example": {
-        "enabled": true
-      },
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "enabled"
-      ]
-    },
-    "Tooltip": {
-      "title": "Tooltip",
-      "example": {
-        "enabled": true
-      },
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "enabled"
-      ]
-    },
-    "Datum": {
-      "title": "Datum",
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "values": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "required": [
-        "name",
-        "values"
-      ]
-    },
-    "CreateaLineChart": {
-      "title": "CreateaLineChart",
-      "example": {
-        "attributes": "{\"type\":\"line\",\"title\":{\"enabled\":true,\"text\":\"LINE CHART\"},\"legend\":{\"enabled\":true},\"tooltip\":{\"enabled\":true}}",
-        "data": "[{\"name\":\"Metric A\",\"values\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\"name\":\"Metric B\",\"values\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]}]",
-        "svg": "https://storage.googleapis.com/charty-v0-images/1539208177750.svg",
-        "png": "https://storage.googleapis.com/charty-v0-images/1539208177750.png",
-        "id": 31
-      },
-      "type": "object",
-      "properties": {
-        "attributes": {
-          "type": "string"
-        },
-        "data": {
-          "type": "string"
-        },
-        "svg": {
-          "type": "string"
-        },
-        "png": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "required": [
-        "attributes",
-        "data",
-        "svg",
-        "png",
-        "id"
-      ]
-    },
-    "UpdateaChartRequest": {
-      "title": "UpdateaChartRequest",
-      "type": "object",
-      "properties": {
-        "attributes": {
-          "$ref": "#/definitions/Attributes"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Datum"
-          }
-        }
-      },
-      "required": [
-        "attributes",
-        "data"
-      ]
-    },
-    "Updateachart": {
-      "title": "Updateachart",
-      "example": {
-        "id": 25,
-        "attributes": "{\"type\":\"bar\",\"title\":{\"enabled\":true,\"text\":\"Bar Chart\"},\"legend\":{\"enabled\":true},\"tooltip\":{\"enabled\":true}}",
-        "data": "[{\"name\":\"Metric A\",\"values\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\"name\":\"Metric B\",\"values\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\"name\":\"Metric B\",\"values\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\"name\":\"Metric B\",\"values\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]",
-        "created": "2018-10-09T04:42:30Z",
-        "png": "https://storage.googleapis.com/charty-v0-images/1539127484920.png",
-        "svg": "https://storage.googleapis.com/charty-v0-images/1539127484920.svg"
-      },
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "attributes": {
-          "type": "string"
-        },
-        "data": {
-          "type": "string"
-        },
-        "created": {
-          "type": "string"
-        },
-        "png": {
-          "type": "string"
-        },
-        "svg": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "id",
-        "attributes",
-        "data",
-        "created",
-        "png",
-        "svg"
-      ]
-    },
-    "Delete": {
-      "title": "Delete",
-      "example": {
-        "id": "27",
-        "object": "chart",
-        "deleted": true
-      },
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "object": {
-          "type": "string"
-        },
-        "deleted": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "id",
-        "object",
-        "deleted"
-      ]
-    },
-    "GenerateaChartRequest": {
-      "title": "GenerateaChartRequest",
-      "type": "object",
-      "properties": {
-        "attributes": {
-          "$ref": "#/definitions/Attributes"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Datum"
-          }
-        }
-      },
-      "required": [
-        "attributes",
-        "data"
-      ]
-    },
-    "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots-request": {
-      "title": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots-request",
-      "example": {
-        "html": "<html><head></head><body>hello world</body></html>",
-        "css": "html,body { background: red;}",
-        "js": "console.log('hello world')",
-        "filename": "testfile-002.png"
-      },
-      "type": "object",
-      "properties": {
-        "html": {
-          "type": "string"
-        },
-        "css": {
-          "type": "string"
-        },
-        "js": {
-          "type": "string"
-        },
-        "filename": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "html",
-        "css",
-        "js",
-        "filename"
-      ]
-    }
-  },
-  "tags": [
-    {
-      "name": "Chart",
-      "description": "This is a chart object representing a created chart. You can retrieve a chart's attributes and data in this call.\n\nYou can also obtain links into to the generated png and svg files.\n\n\n## The chart object\n\n| key     | type         | description  |\n| ------------- |:-------------:| ------------:|\n| attributes      | object |The chart's attributes used to generate. For more information on how to configure a chart, visit our [Chart Configuration](https://charty-v0.appspot.com/docs) documentation.|\n| data     | object/string      | The chart's data used to generate the chart .For more information on the data types chart accepts, visit our [Data Formats](https://charty-v0.appspot.com/data) documentation.  |\n| svg | string     | The URL to access the rendered svg |\n| png | string     | The URL to access the rendered png |\n| id_user | string | The owner of the chart"
-    },
-    {
-      "name": "Misc",
-      "description": ""
-    }
-  ]
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>APIMATIC - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+    
+
+    
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet" />
+<link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery.scrollbar/0.2.11/jquery.scrollbar.min.css"
+          integrity="sha256-nVXk5aDYc/D4r9OoqxZ5H6vpIAqAG5BhVuIdOihDN1c="
+          crossorigin="anonymous" />
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+
+<link href="/bundles/front-css?v=5cc8tdDAN86fLsP3hA4mwaeZHhprhYi9JC7-9qiNjdQ1" rel="stylesheet"/>
+
+    <link href="/bundles/onboarding-css?v=OkE3LPqCxZO4VvCfP5gezTWQD3lRyMqFJHasxdy9ECU1" rel="stylesheet"/>
+
+
+    
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+</head>
+<body>
+    <div class="container onboarding-container">
+            <div class="onboarding-container-centered ">
+                
+
+
+
+<header class="flex flex-col align-center">
+    <div class="icon">
+        <a href="/">
+            <img class="mx-auto d-block" alt="APIMATIC logo" title="Welcome to APIMATIC" src="/imgs/apimatic-logo.svg" />
+        </a>
+    </div>
+    <div class="content">
+        <p>Login to your account</p>
+    </div>
+
+</header>
+<section class="form-wrapper flex flex-col">
+
+<form action="/account/login?ReturnUrl=%2Fapi%2Ftransform%3Fformat%3Dswagger20%26apikey%3DmONZg6E9hVHp7-WXsHucCGl-lXLvzN0t9GGEQ_s1xgrILHdXq_d50wEd8ptizzQN" id="loginForm" method="post" novalidate="True" role="form"><input name="__RequestVerificationToken" type="hidden" value="9Vi_q9QJjexigK60mtAQ7rZskVXxXkWT4vhFudQjNey5uVaErNS0a0WNABUlLF4qSG97jBoToI_E2tv1lI9OVpCYV9lZ7o2sdrjSMcyk39E1" /><div class="validation-summary-valid" data-valmsg-summary="true"><ul><li style="display:none"></li>
+</ul></div>        <div class="form-group">
+            <label class="mb-1" for="signInInputEmail1">
+                Email
+            </label>
+            <input class="form-control form-control-sm" data-Validation="email" data-val="true" data-val-email="The Email Address field is not a valid e-mail address." data-val-required="Email is required" id="Email" name="Email" placeholder="Enter email here" required="required" tabindex="2" type="email" value="" />
+
+        </div>
+        <div class="form-group mb-0">
+            <label class="mb-1" for="signInInputPassword">
+                Password
+            </label>
+            <a class="forgot-password" href="/account/forgotpassword?Length=7">Forgot password?</a>
+            <input class="form-control extra-padding-right" data-title="Caps lock is on" data-toggle="tooltip" data-trigger="manual" data-val="true" data-val-required="Password is required" id="js-onboarding-password-field" name="Password" placeholder="Password" required="true" type="password" />
+            <i class="fa fa-eye onboarding-show-password-icon" id="js-onboarding-show-password-icon"></i>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input class="custom-control-input" data-val="true" data-val-required="The Remember me? field is required." id="customControlInline" name="RememberMe" tabindex="4" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
+                Remember me
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm btn-block" tabindex="5">
+            Login
+        </button>
+        <a href="/account/register" class="btn btn-white btn-sm btn-block" tabindex="6">
+            Sign Up
+        </a>
+</form></section>
+
+            </div>
+    </div>
+</body>
+</html>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+
+<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
+
+<script src="/bundles/front-js?v="></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+    $.validate({
+        modules: 'date, security'
+    });
+</script>
+<script src="/bundles/onboarding-js?v=2h6We__p_84-tByynY6kDWiE-iuM8Pigjw1rycnNaQY1"></script>
+
+
+
