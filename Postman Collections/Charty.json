@@ -26,7 +26,7 @@
         "tags": [
           "Chart"
         ],
-        "operationId": "ChartsGet",
+        "operationId": "ListAllCharts",
         "deprecated": false,
         "produces": [
           "application/json; charset=utf-8"
@@ -98,7 +98,7 @@
         "tags": [
           "Chart"
         ],
-        "operationId": "ChartsPost",
+        "operationId": "CreateaChart",
         "deprecated": false,
         "produces": [
           "application/json; charset=utf-8"
@@ -176,7 +176,7 @@
         "tags": [
           "Chart"
         ],
-        "operationId": "ChartsByIdGet",
+        "operationId": "RetrieveaChart",
         "deprecated": false,
         "produces": [
           "application/json"
@@ -210,7 +210,7 @@
         "tags": [
           "Chart"
         ],
-        "operationId": "ChartsByIdPatch",
+        "operationId": "UpdateaChart",
         "deprecated": false,
         "produces": [
           "application/json; charset=utf-8"
@@ -302,7 +302,7 @@
         "tags": [
           "Chart"
         ],
-        "operationId": "ChartsByIdDelete",
+        "operationId": "DeleteaChart",
         "deprecated": false,
         "produces": [
           "application/json; charset=utf-8"
@@ -369,7 +369,7 @@
         "tags": [
           "Chart"
         ],
-        "operationId": "ChartsGeneratePost",
+        "operationId": "GenerateaChart",
         "deprecated": false,
         "produces": [
           "application/json"
@@ -414,7 +414,7 @@
         "tags": [
           "Misc"
         ],
-        "operationId": "V1ThemeGet",
+        "operationId": "ListThemes",
         "deprecated": false,
         "produces": [
           "application/json"
@@ -443,7 +443,7 @@
         "tags": [
           "Misc"
         ],
-        "operationId": "ScreenshotsPost",
+        "operationId": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots",
         "deprecated": false,
         "produces": [
           "application/json"
