@@ -409,7 +409,6 @@
     },
     "/v1/theme": {
       "get": {
-        "description": "TODO: Add Description",
         "summary": "List Themes",
         "tags": [
           "Misc"
@@ -438,7 +437,6 @@
     },
     "/screenshots": {
       "post": {
-        "description": "TODO: Add Description",
         "summary": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots",
         "tags": [
           "Misc"
