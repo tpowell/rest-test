@@ -103,6 +103,9 @@
         "produces": [
           "application/json; charset=utf-8"
         ],
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "Authorization",
@@ -214,6 +217,9 @@
         "deprecated": false,
         "produces": [
           "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/json"
         ],
         "parameters": [
           {
@@ -374,6 +380,9 @@
         "produces": [
           "application/json"
         ],
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "Authorization",
@@ -444,6 +453,9 @@
         "operationId": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots",
         "deprecated": false,
         "produces": [
+          "application/json"
+        ],
+        "consumes": [
           "application/json"
         ],
         "parameters": [
