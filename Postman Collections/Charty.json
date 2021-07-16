@@ -1,873 +1,635 @@
 {
-  "swagger": "2.0",
   "info": {
-    "version": "1.0",
-    "title": "Charty",
+    "_postman_id": "5536875-c3453e5f-51cf-4431-8fdb-b6a8974a2304",
+    "name": "Charty",
     "description": "The Charty API is organized around REST. We support cross-origin resource sharing, allowing you to interact with our API from client-side web applications, as well as server based calls. To get started, be sure to have your API key ready from your dashboard.\n\n---\n\n# Using the API Documentation\nMany of these examples can be run directly from the command line with cURL or with your favorite language. For ease of exploration, we reccomend [creating an environment in Postman](https://www.getpostman.com/docs/environments) before getting started. \n\n---\n\n# API Keys\n## Alpha Keys\n\nCurrently api keys doubles as a user. Set the `Authoization` header to have the value of `Bearer <username>` where username is any value. This user can be used for subsequent calls to the charts created under that user.\n\n*Note: The following is preliminary for it's implementation.*\n\n## Public Keys:\n\nPublic keys will have read permissions and have the ability to access chart information. They can also be domain locked. These keys can be exposed in a client-side web application.\n\nPlease see [Creating API Keys](#) for more detailed information.\n\n\n## Private keys:\n\nPrivate keys can be furnished with both read/write permissions. Only use these keys in environments that are privately accessible. \n\n---\n\n# Errors\n\nCharty uses standard HTTP response codes to indicate the success or failure of an API request.\n\n| type         | description  |\n| -------------|:------------:|\n| 200 - OK| Everything worked as expected |\n| 201 - Created | Entity Created |\n| 204 - No Content | Entity was Deleted |\n| 400 - Bad Request | The request is malformed | \n| 401 - Unauthorized | No valid API key provided |\n| 404 - Not Found | The requested resource does not exist | \n| 429 - Too Many Requests | The resource is rejected due to rate limiting. |\n| 5XX - Server Errors | Something went wrong on our end >- |\n\n",
-    "contact": {}
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
-  "host": "charty-v0.appspot.com",
-  "basePath": "/api",
-  "securityDefinitions": {},
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/charts": {
-      "get": {
-        "description": "Returns a paginated list of a user's charts. By default, the limit is 10.",
-        "summary": "List All Charts",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "ListAllCharts",
-        "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/EmptyList"
-            },
-            "examples": {
-              "application/json; charset=utf-8": {
-                "start": 0,
-                "limit": 10,
-                "size": 0,
-                "_links": {
-                  "base": "/api/chart/",
-                  "next": null,
-                  "prev": null
-                },
-                "results": []
-              }
-            },
-            "headers": {
-              "Alt-Svc": {
-                "type": "string",
-                "default": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\""
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "100"
-              },
-              "Date": {
-                "type": "string",
-                "default": "Mon, 08 Oct 2018 23:50:01 GMT"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"64-dUGk3UF4zaeuMewzHUT68+QYaZ0\""
-              },
-              "Server": {
-                "type": "string",
-                "default": "Google Frontend"
-              },
-              "X-Cloud-Trace-Context": {
-                "type": "string",
-                "default": "4c8c785bc3989c9a8757d8013865c486;o=1"
-              },
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a chart",
-        "summary": "Create a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "CreateaChart",
-        "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/CreateaChartRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/CreateaLineChart"
-            },
-            "examples": {
-              "application/json; charset=utf-8": {
-                "attributes": "{\"type\":\"line\",\"title\":{\"enabled\":true,\"text\":\"LINE CHART\"},\"legend\":{\"enabled\":true},\"tooltip\":{\"enabled\":true}}",
-                "data": "[{\"name\":\"Metric A\",\"values\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\"name\":\"Metric B\",\"values\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]}]",
-                "svg": "https://storage.googleapis.com/charty-v0-images/1539208177750.svg",
-                "png": "https://storage.googleapis.com/charty-v0-images/1539208177750.png",
-                "id": 31
-              }
-            },
-            "headers": {
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "504"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"1f8-VW66gsxYCwuZ0rzAxEszwD5V+/0\""
-              },
-              "Date": {
-                "type": "string",
-                "default": "Wed, 10 Oct 2018 21:49:47 GMT"
-              },
-              "Connection": {
-                "type": "string",
-                "default": "keep-alive"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/charts/{id}": {
-      "get": {
-        "description": "Retrieve a chart using it's ID",
-        "summary": "Retrieve a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "RetrieveaChart",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The id of the chart"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      },
-      "patch": {
-        "description": "Update a specific chart",
-        "summary": "Update a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "UpdateaChart",
-        "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The id of the chart being modified"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/UpdateaChartRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Updateachart"
-            },
-            "examples": {
-              "application/json; charset=utf-8": {
-                "id": 25,
-                "attributes": "{\"type\":\"bar\",\"title\":{\"enabled\":true,\"text\":\"Bar Chart\"},\"legend\":{\"enabled\":true},\"tooltip\":{\"enabled\":true}}",
-                "data": "[{\"name\":\"Metric A\",\"values\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\"name\":\"Metric B\",\"values\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\"name\":\"Metric B\",\"values\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\"name\":\"Metric B\",\"values\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]",
-                "created": "2018-10-09T04:42:30Z",
-                "png": "https://storage.googleapis.com/charty-v0-images/1539127484920.png",
-                "svg": "https://storage.googleapis.com/charty-v0-images/1539127484920.svg"
-              }
-            },
-            "headers": {
-              "Alt-Svc": {
-                "type": "string",
-                "default": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\""
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "726"
-              },
-              "Date": {
-                "type": "string",
-                "default": "Tue, 09 Oct 2018 23:24:50 GMT"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"2d6-8hoEj1j3Da4P9PyPa/ugf32gDyQ\""
-              },
-              "Server": {
-                "type": "string",
-                "default": "Google Frontend"
-              },
-              "X-Cloud-Trace-Context": {
-                "type": "string",
-                "default": "6ccb13c36696f7bfed82d0314410a436;o=1"
-              },
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Delete a chart",
-        "summary": "Delete a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "DeleteaChart",
-        "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The id of the chart to delete"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Delete"
-            },
-            "examples": {
-              "application/json; charset=utf-8": {
-                "id": "27",
-                "object": "chart",
-                "deleted": true
-              }
-            },
-            "headers": {
-              "Connection": {
-                "type": "string",
-                "default": "keep-alive"
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "43"
-              },
-              "Date": {
-                "type": "string",
-                "default": "Tue, 09 Oct 2018 04:57:29 GMT"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"2b-cSDqbYlwJLtTBIy3OK+/9QOxZSo\""
-              },
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/charts/generate": {
-      "post": {
-        "description": "Generate a chart (SVG by default)",
-        "summary": "Generate a Chart",
-        "tags": [
-          "Chart"
-        ],
-        "operationId": "GenerateaChart",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/GenerateaChartRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/v1/theme": {
-      "get": {
-        "summary": "List Themes",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "ListThemes",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/screenshots": {
-      "post": {
-        "summary": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/https%3A~1~1us-central1-chartingio-v0.cloudfunctions.net~1screenshots-request"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "EmptyList": {
-      "title": "EmptyList",
-      "example": {
-        "start": 0,
-        "limit": 10,
-        "size": 0,
-        "_links": {
-          "base": "/api/chart/",
-          "next": null,
-          "prev": null
-        },
-        "results": []
-      },
-      "type": "object",
-      "properties": {
-        "start": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "limit": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "size": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "_links": {
-          "$ref": "#/definitions/Links"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "required": [
-        "start",
-        "limit",
-        "size",
-        "_links",
-        "results"
-      ]
-    },
-    "Links": {
-      "title": "Links",
-      "example": {
-        "base": "/api/chart/",
-        "next": null,
-        "prev": null
-      },
-      "type": "object",
-      "properties": {
-        "base": {
-          "type": "string"
-        },
-        "next": {
-          "type": "string"
-        },
-        "prev": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "base",
-        "next",
-        "prev"
-      ]
-    },
-    "CreateaChartRequest": {
-      "title": "CreateaChartRequest",
-      "type": "object",
-      "properties": {
-        "attributes": {
-          "$ref": "#/definitions/Attributes"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Datum"
-          }
-        }
-      },
-      "required": [
-        "attributes",
-        "data"
-      ]
-    },
-    "Attributes": {
-      "title": "Attributes",
-      "example": {
-        "type": "line",
-        "title": {
-          "enabled": true,
-          "text": "Hello World"
-        },
-        "legend": {
-          "enabled": true
-        },
-        "tooltip": {
-          "enabled": true
-        }
-      },
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string"
-        },
-        "title": {
-          "$ref": "#/definitions/Title"
-        },
-        "legend": {
-          "$ref": "#/definitions/Legend"
-        },
-        "tooltip": {
-          "$ref": "#/definitions/Tooltip"
-        }
-      },
-      "required": [
-        "type",
-        "title",
-        "legend",
-        "tooltip"
-      ]
-    },
-    "Title": {
-      "title": "Title",
-      "example": {
-        "enabled": true,
-        "text": "Hello World"
-      },
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        },
-        "text": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "enabled",
-        "text"
-      ]
-    },
-    "Legend": {
-      "title": "Legend",
-      "example": {
-        "enabled": true
-      },
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "enabled"
-      ]
-    },
-    "Tooltip": {
-      "title": "Tooltip",
-      "example": {
-        "enabled": true
-      },
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "enabled"
-      ]
-    },
-    "Datum": {
-      "title": "Datum",
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "values": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "required": [
-        "name",
-        "values"
-      ]
-    },
-    "CreateaLineChart": {
-      "title": "CreateaLineChart",
-      "example": {
-        "attributes": "{\"type\":\"line\",\"title\":{\"enabled\":true,\"text\":\"LINE CHART\"},\"legend\":{\"enabled\":true},\"tooltip\":{\"enabled\":true}}",
-        "data": "[{\"name\":\"Metric A\",\"values\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\"name\":\"Metric B\",\"values\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]}]",
-        "svg": "https://storage.googleapis.com/charty-v0-images/1539208177750.svg",
-        "png": "https://storage.googleapis.com/charty-v0-images/1539208177750.png",
-        "id": 31
-      },
-      "type": "object",
-      "properties": {
-        "attributes": {
-          "type": "string"
-        },
-        "data": {
-          "type": "string"
-        },
-        "svg": {
-          "type": "string"
-        },
-        "png": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "required": [
-        "attributes",
-        "data",
-        "svg",
-        "png",
-        "id"
-      ]
-    },
-    "UpdateaChartRequest": {
-      "title": "UpdateaChartRequest",
-      "type": "object",
-      "properties": {
-        "attributes": {
-          "$ref": "#/definitions/Attributes"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Datum"
-          }
-        }
-      },
-      "required": [
-        "attributes",
-        "data"
-      ]
-    },
-    "Updateachart": {
-      "title": "Updateachart",
-      "example": {
-        "id": 25,
-        "attributes": "{\"type\":\"bar\",\"title\":{\"enabled\":true,\"text\":\"Bar Chart\"},\"legend\":{\"enabled\":true},\"tooltip\":{\"enabled\":true}}",
-        "data": "[{\"name\":\"Metric A\",\"values\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\"name\":\"Metric B\",\"values\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\"name\":\"Metric B\",\"values\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\"name\":\"Metric B\",\"values\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]",
-        "created": "2018-10-09T04:42:30Z",
-        "png": "https://storage.googleapis.com/charty-v0-images/1539127484920.png",
-        "svg": "https://storage.googleapis.com/charty-v0-images/1539127484920.svg"
-      },
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "attributes": {
-          "type": "string"
-        },
-        "data": {
-          "type": "string"
-        },
-        "created": {
-          "type": "string"
-        },
-        "png": {
-          "type": "string"
-        },
-        "svg": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "id",
-        "attributes",
-        "data",
-        "created",
-        "png",
-        "svg"
-      ]
-    },
-    "Delete": {
-      "title": "Delete",
-      "example": {
-        "id": "27",
-        "object": "chart",
-        "deleted": true
-      },
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "object": {
-          "type": "string"
-        },
-        "deleted": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "id",
-        "object",
-        "deleted"
-      ]
-    },
-    "GenerateaChartRequest": {
-      "title": "GenerateaChartRequest",
-      "type": "object",
-      "properties": {
-        "attributes": {
-          "$ref": "#/definitions/Attributes"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Datum"
-          }
-        }
-      },
-      "required": [
-        "attributes",
-        "data"
-      ]
-    },
-    "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots-request": {
-      "title": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots-request",
-      "example": {
-        "html": "<html><head></head><body>hello world</body></html>",
-        "css": "html,body { background: red;}",
-        "js": "console.log('hello world')",
-        "filename": "testfile-002.png"
-      },
-      "type": "object",
-      "properties": {
-        "html": {
-          "type": "string"
-        },
-        "css": {
-          "type": "string"
-        },
-        "js": {
-          "type": "string"
-        },
-        "filename": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "html",
-        "css",
-        "js",
-        "filename"
-      ]
-    }
-  },
-  "tags": [
+  "item": [
     {
       "name": "Chart",
-      "description": "This is a chart object representing a created chart. You can retrieve a chart's attributes and data in this call.\n\nYou can also obtain links into to the generated png and svg files.\n\n\n## The chart object\n\n| key     | type         | description  |\n| ------------- |:-------------:| ------------:|\n| attributes      | object |The chart's attributes used to generate. For more information on how to configure a chart, visit our [Chart Configuration](https://charty-v0.appspot.com/docs) documentation.|\n| data     | object/string      | The chart's data used to generate the chart .For more information on the data types chart accepts, visit our [Data Formats](https://charty-v0.appspot.com/data) documentation.  |\n| svg | string     | The URL to access the rendered svg |\n| png | string     | The URL to access the rendered png |\n| id_user | string | The owner of the chart"
+      "item": [
+        {
+          "name": "List All Charts",
+          "_postman_id": "5536875-fdce43a3-f85d-4f41-bedd-3706bf212807",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "686d561ab1434650a255fbce6d8367d8",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "{{API_URL}}/charts",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "charts"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Returns a paginated list of a user's charts. By default, the limit is 10."
+          },
+          "response": [
+            {
+              "id": "5536875-c714e8a8-1360-47a0-af18-ebaa67488bed",
+              "name": "Empty List",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": "{{API_URL}}/charts/"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Alt-Svc",
+                  "value": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\"",
+                  "name": "Alt-Svc",
+                  "description": "Custom header"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "100",
+                  "name": "Content-Length",
+                  "description": "The length of the response body in octets (8-bit bytes)"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8",
+                  "name": "Content-Type",
+                  "description": "The mime type of this content"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 08 Oct 2018 23:50:01 GMT",
+                  "name": "Date",
+                  "description": "The date and time that the message was sent"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"64-dUGk3UF4zaeuMewzHUT68+QYaZ0\"",
+                  "name": "ETag",
+                  "description": "An identifier for a specific version of a resource, often a message digest"
+                },
+                {
+                  "key": "Server",
+                  "value": "Google Frontend",
+                  "name": "Server",
+                  "description": "A name for the server"
+                },
+                {
+                  "key": "X-Cloud-Trace-Context",
+                  "value": "4c8c785bc3989c9a8757d8013865c486;o=1",
+                  "name": "X-Cloud-Trace-Context",
+                  "description": "Custom header"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express",
+                  "name": "X-Powered-By",
+                  "description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\"start\":0,\"limit\":10,\"size\":0,\"_links\":{\"base\":\"/api/chart/\",\"next\":null,\"prev\":null},\"results\":[]}"
+            }
+          ]
+        },
+        {
+          "name": "Retrieve a Chart",
+          "_postman_id": "5536875-37a8844a-1e37-4956-9da0-a4b54d0f0687",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_id}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/charts/:id",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "charts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{chart_id}}",
+                  "description": "The id of the chart",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Retrieve a chart using it's ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Create a Chart",
+          "_postman_id": "5536875-3761d266-7bb6-499b-8f64-172d94b6e16a",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"Hello World\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [\n\t\t{\n        \t\"name\": \"Metric A\",\n        \t\"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n    \t}, \n    \t{\n        \t\"name\": \"Metric B\",\n        \t\"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n    \t}\n    ]\n}"
+            },
+            "url": "{{API_URL}}/charts",
+            "description": "Creates a chart"
+          },
+          "response": [
+            {
+              "id": "5536875-541237ed-3f58-4d25-a06c-d7ba034cac5c",
+              "name": "Create a Line Chart",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"LINE CHART\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [\n\t\t{\n        \t\"name\": \"Metric A\",\n        \t\"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n    \t}, \n    \t{\n        \t\"name\": \"Metric B\",\n        \t\"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n    \t}\n    ]\n}"
+                },
+                "url": "{{API_URL}}/charts"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "504"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1f8-VW66gsxYCwuZ0rzAxEszwD5V+/0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Oct 2018 21:49:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"attributes\": \"{\\\"type\\\":\\\"line\\\",\\\"title\\\":{\\\"enabled\\\":true,\\\"text\\\":\\\"LINE CHART\\\"},\\\"legend\\\":{\\\"enabled\\\":true},\\\"tooltip\\\":{\\\"enabled\\\":true}}\",\n    \"data\": \"[{\\\"name\\\":\\\"Metric A\\\",\\\"values\\\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]}]\",\n    \"svg\": \"https://storage.googleapis.com/charty-v0-images/1539208177750.svg\",\n    \"png\": \"https://storage.googleapis.com/charty-v0-images/1539208177750.png\",\n    \"id\": 31\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update a Chart",
+          "_postman_id": "5536875-e4ff52ae-51c1-4506-aa6c-82093bd2c2b7",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"attributes\": {\n        \"type\": \"bar\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"Bar Chart\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/charts/:id",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "charts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{chart_id}}",
+                  "description": "The id of the chart being modified",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update a specific chart"
+          },
+          "response": [
+            {
+              "id": "5536875-ae65d823-78cd-4f58-a4c3-676d4d799f2a",
+              "name": "Update a chart",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"attributes\": {\n        \"type\": \"bar\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"Bar Chart\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
+                },
+                "url": {
+                  "raw": "{{API_URL}}/charts/:id",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "charts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "{{chart_id}}",
+                      "description": "The id of the chart being modified"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Alt-Svc",
+                  "value": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\"",
+                  "name": "Alt-Svc",
+                  "description": "Custom header"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "726",
+                  "name": "Content-Length",
+                  "description": "The length of the response body in octets (8-bit bytes)"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8",
+                  "name": "Content-Type",
+                  "description": "The mime type of this content"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Oct 2018 23:24:50 GMT",
+                  "name": "Date",
+                  "description": "The date and time that the message was sent"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2d6-8hoEj1j3Da4P9PyPa/ugf32gDyQ\"",
+                  "name": "ETag",
+                  "description": "An identifier for a specific version of a resource, often a message digest"
+                },
+                {
+                  "key": "Server",
+                  "value": "Google Frontend",
+                  "name": "Server",
+                  "description": "A name for the server"
+                },
+                {
+                  "key": "X-Cloud-Trace-Context",
+                  "value": "6ccb13c36696f7bfed82d0314410a436;o=1",
+                  "name": "X-Cloud-Trace-Context",
+                  "description": "Custom header"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express",
+                  "name": "X-Powered-By",
+                  "description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\"id\":25,\"attributes\":\"{\\\"type\\\":\\\"bar\\\",\\\"title\\\":{\\\"enabled\\\":true,\\\"text\\\":\\\"Bar Chart\\\"},\\\"legend\\\":{\\\"enabled\\\":true},\\\"tooltip\\\":{\\\"enabled\\\":true}}\",\"data\":\"[{\\\"name\\\":\\\"Metric A\\\",\\\"values\\\":[0,10.04,14.71,13.53,8.43,2.52,-1.72,-2.95,0.91,9.85,21.39]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-3.94,3.4,0.95,-5.44,6.83,-5.84,2.36,0.15,1.63,-7.64]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-2.81,4.21,-4.07,2.83,-1.25,0.08,0.48,0.19,-2.26,5.29]},{\\\"name\\\":\\\"Metric B\\\",\\\"values\\\":[0,-1.29,0.25,2.08,-3.26,2.3,-0.58,-0.57,-0.22,1.83,-1.59]}]\",\"created\":\"2018-10-09T04:42:30.000Z\",\"png\":\"https://storage.googleapis.com/charty-v0-images/1539127484920.png\",\"svg\":\"https://storage.googleapis.com/charty-v0-images/1539127484920.svg\"}"
+            }
+          ]
+        },
+        {
+          "name": "Delete a Chart",
+          "_postman_id": "5536875-00a8a985-b5ee-4172-8f74-25c0247ff491",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "{{API_URL}}/charts/:id",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "charts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{chart_id}}",
+                  "description": "The id of the chart to delete",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete a chart"
+          },
+          "response": [
+            {
+              "id": "5536875-aea1c8d1-9ae2-476c-84e9-e9ff3cb648be",
+              "name": "Delete",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "{{API_URL}}/charts/:id",
+                  "host": [
+                    "{{API_URL}}"
+                  ],
+                  "path": [
+                    "charts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "27",
+                      "description": "The id of the chart to delete"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "keep-alive",
+                  "name": "Connection",
+                  "description": "Options that are desired for the connection"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "43",
+                  "name": "Content-Length",
+                  "description": "The length of the response body in octets (8-bit bytes)"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8",
+                  "name": "Content-Type",
+                  "description": "The mime type of this content"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Oct 2018 04:57:29 GMT",
+                  "name": "Date",
+                  "description": "The date and time that the message was sent"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2b-cSDqbYlwJLtTBIy3OK+/9QOxZSo\"",
+                  "name": "ETag",
+                  "description": "An identifier for a specific version of a resource, often a message digest"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express",
+                  "name": "X-Powered-By",
+                  "description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\"id\":\"27\",\"object\":\"chart\",\"deleted\":true}"
+            }
+          ]
+        },
+        {
+          "name": "Generate a Chart",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "0a6f53e9-5d65-41a0-982b-b0d8f8197de3",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "5536875-57f1ec5e-534d-44c3-809d-70e257bd1234",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"attributes\": {\n        \"type\": \"line\",\n        \"title\": {\n          \"enabled\": true,\n          \"text\": \"Hello World\"\n        },\n        \"legend\": {\n          \"enabled\": true\n        },\n        \"tooltip\": {\n          \"enabled\": true\n        }\n      },\n\t\"data\": [{\n        \"name\": \"Metric A\",\n        \"values\": [0, 10.04, 14.71, 13.53, 8.43, 2.52, -1.72, -2.95, 0.91, 9.85, 21.39]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -3.94, 3.4, 0.95, -5.44, 6.83, -5.84, 2.36, 0.15, 1.63, -7.64]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -2.81, 4.21, -4.07, 2.83, -1.25, 0.08, 0.48, 0.19, -2.26, 5.29]\n      }, {\n        \"name\": \"Metric B\",\n        \"values\": [0, -1.29, 0.25, 2.08, -3.26, 2.3, -0.58, -0.57, -0.22, 1.83, -1.59]\n      }]\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/charts/generate",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "charts",
+                "generate"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Generate a chart (SVG by default)"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "5536875-82f1fa82-69e7-43c5-b2fd-3cc9cdfae72d",
+      "description": "This is a chart object representing a created chart. You can retrieve a chart's attributes and data in this call.\n\nYou can also obtain links into to the generated png and svg files.\n\n\n## The chart object\n\n| key     | type         | description  |\n| ------------- |:-------------:| ------------:|\n| attributes      | object |The chart's attributes used to generate. For more information on how to configure a chart, visit our [Chart Configuration](https://charty-v0.appspot.com/docs) documentation.|\n| data     | object/string      | The chart's data used to generate the chart .For more information on the data types chart accepts, visit our [Data Formats](https://charty-v0.appspot.com/data) documentation.  |\n| svg | string     | The URL to access the rendered svg |\n| png | string     | The URL to access the rendered png |\n| id_user | string | The owner of the chart",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "21bb6bf6-b816-4078-99e5-90e3dd50a1ff",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "a671a0e2-996a-49ae-a1f1-47b5efe58d59",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
-      "name": "Misc",
-      "description": ""
+      "name": "List Themes",
+      "_postman_id": "5536875-2b159ab6-4742-478c-8379-50007f996c62",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "d3dbf3251d6a8dd68be8d4724f6a774f"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": "{{API_URL}}/v1/theme"
+      },
+      "response": []
+    },
+    {
+      "name": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots",
+      "_postman_id": "5536875-e98f9d61-3d02-47db-8d54-2ca748f83f4b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"html\": \"<html><head></head><body>hello world</body></html>\",\n\t\"css\": \"html,body { background: red;}\",\n\t\"js\": \"console.log('hello world')\",\n\t\"filename\": \"testfile-002.png\"\n}"
+        },
+        "url": "https://us-central1-chartingio-v0.cloudfunctions.net/screenshots"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "35163c5d-ce5d-4f3b-9c5b-de6ccff8f561",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "4280f64b-8cae-45f3-96b1-302f763df20c",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "23c8563f-2863-4d9a-986a-8adc167385a7",
+      "key": "API_URL",
+      "value": "https://charty-v0.appspot.com/api",
+      "type": "string"
     }
   ]
 }
